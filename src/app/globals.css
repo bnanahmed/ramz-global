@@ -1,0 +1,402 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   ROOT VARIABLES — Z-INDEX SYSTEM
+   ============================================ */
+:root {
+  --z-base: 0;
+  --z-particles: 1;
+  --z-gradient: 2;
+  --z-content: 10;
+  --z-floating: 20;
+  --z-navbar: 50;
+  --z-overlay: 80;
+  --z-modal: 90;
+  --z-toast: 100;
+
+  --vh: 1vh;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  direction: rtl;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: "Cairo", "Tajawal", sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+}
+
+/* Fix for mobile viewport */
+@supports (height: 100dvh) {
+  .min-h-screen-safe { min-height: 100dvh; }
+  .h-screen-safe { height: 100dvh; }
+}
+
+@supports not (height: 100dvh) {
+  .min-h-screen-safe { min-height: 100vh; }
+  .h-screen-safe { height: 100vh; }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #e8500a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #ff6b2b; }
+
+::selection { background: rgba(232, 80, 10, 0.35); color: #fff; }
+
+/* ============================================
+   GLASS EFFECTS
+   ============================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-orange {
+  background: rgba(232, 80, 10, 0.08);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(232, 80, 10, 0.2);
+}
+
+.glass-strong {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* ============================================
+   GLOW EFFECTS
+   ============================================ */
+.glow-orange {
+  box-shadow: 0 0 30px rgba(232, 80, 10, 0.35);
+}
+
+.glow-orange-intense {
+  box-shadow:
+    0 0 60px rgba(232, 80, 10, 0.6),
+    0 0 120px rgba(232, 80, 10, 0.2);
+}
+
+/* ============================================
+   PATTERNS
+   ============================================ */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(232, 80, 10, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 80, 10, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ============================================
+   GRADIENT TEXT
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #e8500a, #ff8c42, #e8500a);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ============================================
+   PRIMARY BUTTON
+   ============================================ */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e8500a, #c44008);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+
+.btn-primary:hover::before { transform: translateX(100%); }
+
+.btn-primary:hover {
+  box-shadow: 0 10px 40px rgba(232, 80, 10, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+.btn-primary > * { position: relative; z-index: 2; }
+
+/* ============================================
+   SECTION DIVIDER
+   ============================================ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 80, 10, 0.4), transparent);
+}
+
+/* ============================================
+   ISOLATION HELPERS
+   ============================================ */
+.isolate-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+:focus-visible {
+  outline: 2px solid #e8500a;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   ANIMATIONS — GPU OPTIMIZED
+   ============================================ */
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -15px, 0); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 5s ease-in-out infinite;
+  animation-delay: 1s;
+  will-change: transform;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* ============================================
+   WHATSAPP PULSE RING (replaces styled-jsx)
+   ============================================ */
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.animate-pulse-ring {
+  animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* ============================================
+   SCROLL PROGRESS BAR
+   ============================================ */
+.scroll-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.05);
+  z-index: 9999;
+}
+
+.scroll-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e8500a, #ff8c42);
+  transform-origin: left;
+  transition: none;
+}
+
+/* ============================================
+   SWIPER RTL OVERRIDES
+   ============================================ */
+.swiper-rtl .swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  transform: scaleX(-1);
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.3) !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #e8500a !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+}
+
+/* ============================================
+   TEXTAREA FIX
+   ============================================ */
+textarea.form-textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* ============================================
+   SELECT RTL FIX
+   ============================================ */
+select.form-select {
+  direction: rtl;
+  text-align: right;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23e8500a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 14px center;
+  padding-left: 40px;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   FLUID TYPOGRAPHY
+   ============================================ */
+.text-fluid-hero {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.05;
+}
+
+.text-fluid-title {
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.text-fluid-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
+/* ============================================
+   SAFE AREA SUPPORT
+   ============================================ */
+.pt-safe { padding-top: var(--safe-top); }
+.pb-safe { padding-bottom: var(--safe-bottom); }
+
+/* ============================================
+   PREVENT IMAGE FLICKER
+   ============================================ */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* ============================================
+   STABLE STACKING CONTEXTS
+   ============================================ */
+.stack-base { z-index: var(--z-base); }
+.stack-particles { z-index: var(--z-particles); }
+.stack-gradient { z-index: var(--z-gradient); }
+.stack-content { z-index: var(--z-content); }
+.stack-floating { z-index: var(--z-floating); }
+.stack-navbar { z-index: var(--z-navbar); }
+.stack-overlay { z-index: var(--z-overlay); }
+.stack-modal { z-index: var(--z-modal); }
+
+/* ============================================
+   SCROLL LOCK
+   ============================================ */
+.scroll-locked {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+}
+
+/* ============================================
+   TIMELINE CONNECTOR
+   ============================================ */
+.timeline-line {
+  position: absolute;
+  top: 28px;
+  bottom: 28px;
+  width: 2px;
+  background: linear-gradient(180deg, #e8500a 0%, rgba(232, 80, 10, 0.1) 100%);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ============================================
+   PROJECT CARD OVERLAY
+   ============================================ */
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-card-overlay {
+  opacity: 1;
+}
+
+/* ============================================
+   FILTER TAB ACTIVE
+   ============================================ */
+.filter-tab-active {
+  background: linear-gradient(135deg, #e8500a, #c44008);
+  color: white;
+  box-shadow: 0 4px 15px rgba(232, 80, 10, 0.4);
+}

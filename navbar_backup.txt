@@ -1,0 +1,19 @@
+The USER performed the following action:
+Show the contents of file c:\Users\GM\Downloads\global-icon-constructions\src\components\Navbar.tsx from lines 1 to 22
+File Path: `file:///c:/Users/GM/Downloads/global-icon-constructions/src/components/Navbar.tsx`
+Total Lines: 289
+Total Bytes: 12896
+Showing lines 1 to 22
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: "use client";
+2: import { useState, useEffect } from "react";
+3: import Link from "next/link";
+4: import { usePathname } from "next/navigation";
+5: import { motion, AnimatePresence } from "framer-motion";
+6: import { Menu, X, ChevronDown, Phone, ArrowLeft } from "lucide-react";
+7: import Logo from "./Logo";
+8: import SERVICES from "@/lib/services-data";
+9: 
+10: const NAV_LINKS = [
+11:   { name: "الرئيسية", href: "/" },
+<truncated 414 bytes>

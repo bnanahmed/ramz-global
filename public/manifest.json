@@ -1,0 +1,18 @@
+{
+  "name": "الرمز العالمي للمقاولات",
+  "short_name": "الرمز العالمي",
+  "description": "مؤسسة الرمز العالمي للمقاولات — شريككم الموثوق في أعمال التشييد والبناء والتشطيبات والصيانة في المملكة العربية السعودية",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#E8500A",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
