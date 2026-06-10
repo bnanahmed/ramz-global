@@ -18,19 +18,18 @@ export default function Logo({
   const isVertical = variant === "vertical";
   const isIconOnly = variant === "icon-only";
 
-  // ─── ألوان دقيقة مطابقة للصورة الأصلية وبدون خلفيات ───────────
-  // الجزء المتغير من الأيقونة (أبيض في الداكن، كحلي/أسود في الفاتح)
+  // الجزء المتغير من الأيقونة (أبيض في الداكن، كحلي في الفاتح)
   const shapeColor = theme === "dark" ? "#FFFFFF" : "#1A1A2E";
-  // لون النص (أبيض في الداكن، كحلي/أسود في الفاتح)
+  // لون النص
   const textColor = theme === "dark" ? "#FFFFFF" : "#1A1A2E";
 
-  // ─── أحجام متجاوبة للأيقونة ────────────────────────────────────
+  // أحجام الأيقونة
   const iconW = size;
   const iconH = size * 1.1;
 
-  // ─── أحجام متجاوبة للنص (مبنية على الـ size لمنع التداخل والتشوه) ──
-  const arabicFontSize = isVertical ? size * 0.45 : size * 0.38;
-  const englishFontSize = isVertical ? size * 0.3 : size * 0.25;
+  // أحجام النص متناسبة مع الأيقونة
+  const arabicFontSize = isVertical ? size * 0.42 : size * 0.36;
+  const englishFontSize = isVertical ? size * 0.27 : size * 0.23;
 
   return (
     <div
@@ -42,10 +41,10 @@ export default function Logo({
       `}
     >
       {/* ═══════════════════════════════════════════════════
-          ICON  –  SVG مطابق للأصل (بدون أي خلفية)
+          ICON – SVG مطابق للأصل
       ═══════════════════════════════════════════════════ */}
       <div
-        className="relative shrink-0 flex items-center justify-center"
+        className="relative shrink-0"
         style={{ width: iconW, height: iconH }}
       >
         <svg
@@ -60,7 +59,7 @@ export default function Logo({
             fill="#E8500A"
           />
 
-          {/* ── ❷ الشريط المتغير اللون (الجزء الأمامي العلوي) ──────────── */}
+          {/* ── ❷ الشريط الداكن/الفاتح (الجزء الأمامي العلوي) ──────────── */}
           <polygon
             points="100,10 35,75 100,140 100,106 69,75 100,44 131,75 165,75"
             fill={shapeColor}
@@ -83,7 +82,7 @@ export default function Logo({
             flex flex-col
             ${isVertical ? "items-center text-center" : "items-start"}
           `}
-          style={{ justifyContent: "center" }}
+          style={{ justifyContent: "center", gap: `${size * 0.04}px` }}
         >
           {/* ── النص العربي ─────────────────────────────────────── */}
           <h1
@@ -93,12 +92,11 @@ export default function Logo({
               fontFamily: '"Cairo", "IBM Plex Sans Arabic", "Tahoma", sans-serif',
               fontWeight: 700,
               letterSpacing: "-0.01em",
-              lineHeight: "1.5", // تم رفع الـ lineHeight لمنع الخط العربي من التداخل مع النص الإنجليزي
+              lineHeight: 1.2,
               whiteSpace: "nowrap",
               fontSize: `${arabicFontSize}px`,
               margin: 0,
               padding: 0,
-              marginBottom: isVertical ? "4px" : "0px", // مسافة آمنة صغيرة
             }}
           >
             الرمز العالمي للمقاولات
@@ -109,8 +107,8 @@ export default function Logo({
             style={{
               color: textColor,
               fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", sans-serif',
-              letterSpacing: "-0.01em",
-              lineHeight: "1.2",
+              letterSpacing: "0em",
+              lineHeight: 1.2,
               whiteSpace: "nowrap",
               fontSize: `${englishFontSize}px`,
               margin: 0,

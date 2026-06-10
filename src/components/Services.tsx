@@ -54,16 +54,17 @@ export default function Services() {
                   <article className="relative h-full rounded-3xl overflow-hidden border border-white/6 bg-white/[0.02] hover:border-[#E8500A]/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(232,80,10,0.15)]">
 
                     {/* Image */}
-                    <div className="relative h-52 overflow-hidden">
+                    <div className="relative h-56 overflow-hidden">
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        style={{ objectPosition: service.imagePosition || "center" }}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         priority={i < 3}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-transparent to-transparent" />
 
                       {/* Tag */}
                       {service.tag && (

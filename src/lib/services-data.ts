@@ -20,6 +20,7 @@ interface ServiceData {
   short: string;
   tag: string;
   image: string;
+  imagePosition?: string;
   metaTitle: string;
   metaDesc: string;
   heroDesc: string;
@@ -33,12 +34,12 @@ export const SERVICES: ServiceData[] = [
   {
     slug: "tamdidat-kahrabiya",
     icon: Zap,
-    title: "القسم الكهرباء",
+    title: "أعمال الكهرباء",
     short: "حلول كهربائية متكاملة وآمنة لجميع المنشآت",
     tag: "",
     image: "/services/elec-new.jpg",
     metaTitle:
-      "القسم الكهرباء — إصلاح وتمديدات كهربائية في السعودية | الرمز العالمي للمقاولات",
+      "أعمال الكهرباء — إصلاح وتمديدات كهربائية في السعودية | الرمز العالمي للمقاولات",
     metaDesc:
       "خدمات كهربائية شاملة: إصلاح الأعطال، تمديدات كهربائية، صيانة لوحات التحكم، تحويل الفولتية، تركيب الأجهزة، وحساب الأحمال. كهربائيون معتمدون في السعودية.",
     heroDesc:
@@ -126,8 +127,8 @@ export const SERVICES: ServiceData[] = [
     title: "أعمال التكييف",
     short: "حلول تكييف متكاملة تناسب جميع المساحات",
     tag: "",
-    image:
-      "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&q=85",
+    image: "/services/hvac-new.jpg",
+    imagePosition: "center 75%",
     metaTitle:
       "أعمال التكييف — تركيب وصيانة مكيفات في السعودية | الرمز العالمي للمقاولات",
     metaDesc:

@@ -68,6 +68,7 @@ export default function ServicePage({ params }: Props) {
           alt={service.title}
           fill
           className="object-cover"
+          style={{ objectPosition: service.imagePosition || "center" }}
           priority
           sizes="100vw"
         />

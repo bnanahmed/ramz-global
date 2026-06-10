@@ -18,20 +18,7 @@ const COMPANY_LINKS = [
   { name: "تواصل معنا", href: "/#contact" },
 ];
 
-const SOCIALS = [
-  {
-    icon: Instagram,
-    href: "https://instagram.com/globalicon.ksa",
-    label: "Instagram — الرمز العالمي",
-    color: "hover:text-pink-400 hover:border-pink-400/40",
-  },
-  {
-    icon: Twitter,
-    href: "https://twitter.com/globalicon_ksa",
-    label: "X (Twitter) — الرمز العالمي",
-    color: "hover:text-sky-400 hover:border-sky-400/40",
-  },
-];
+
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -50,21 +37,6 @@ export default function Footer() {
               بأعلى معايير الجودة في المملكة العربية السعودية.
             </p>
 
-            {/* Social Icons */}
-            <div className="flex flex-wrap gap-2.5">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className={`w-11 h-11 rounded-xl glass border border-white/10 flex items-center justify-center text-white/40 ${s.color} transition-all duration-200 hover:scale-110`}
-                >
-                  <s.icon size={18} />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -96,19 +68,20 @@ export default function Footer() {
             </h4>
 
             <div className="space-y-3 mb-6">
-              <a
-                href="tel:+966500807274"
-                className="flex items-center gap-3 text-white/50 hover:text-[#E8500A] transition-colors group text-sm"
-              >
-                <div className="w-9 h-9 rounded-xl bg-white/5 group-hover:bg-[#E8500A]/10 flex items-center justify-center transition-colors shrink-0">
+              <div className="flex items-center gap-3 text-white/50 text-sm">
+                <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
                   <Phone size={14} className="text-[#E8500A]" />
                 </div>
                 <div>
                   <p className="text-white/30 text-[10px] uppercase">اتصل بنا</p>
-                  <p className="font-semibold text-xs"><span dir="ltr">+966 50 080 7274</span></p>
-                  <p className="font-semibold text-xs text-white/40"><span dir="ltr">+966 50 076 3707</span></p>
+                  <a href="tel:+966500807274" className="block font-semibold text-xs hover:text-[#E8500A] transition-colors mb-1">
+                    <span dir="ltr">+966 50 080 7274</span>
+                  </a>
+                  <a href="tel:+966500763707" className="block font-semibold text-xs text-white/40 hover:text-[#E8500A] transition-colors">
+                    <span dir="ltr">+966 50 076 3707</span>
+                  </a>
                 </div>
-              </a>
+              </div>
 
               <a
                 href="mailto:Global.icon.ksa@gmail.com"
